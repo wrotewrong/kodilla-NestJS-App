@@ -24,4 +24,24 @@ export class ProductsService {
     db.products.push(newProduct);
     return newProduct;
   }
+
+  //   public updateById(
+  //     id: Product['id'],
+  //     productData: Omit<Product, 'id'>,
+  //   ): Product {
+  //     const index = db.products.findIndex((p) => p.id === id);
+  //     let updateProduct = db.products[index];
+  //     updateProduct = { ...updateProduct, ...productData };
+  //     db.products.splice(index, 1, updateProduct);
+  //     return updateProduct;
+  //   }
+
+  public updateById(id: Product['id'], productData: Omit<Product, 'id'>): void {
+    db.products = db.products.map((p) => {
+      if (p.id === id) {
+        return { ...p, ...productData };
+      }
+      return p;
+    });
+  }
 }
