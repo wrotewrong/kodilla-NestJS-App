@@ -1,28 +1,42 @@
 import { Injectable } from '@nestjs/common';
-import { db, Product } from './../db';
-import { v4 as uuidv4 } from 'uuid';
+// import { db, Product } from './../db';
+// import { v4 as uuidv4 } from 'uuid';
+import { PrismaService } from '../../shared/services/prisma.service';
+import { Product } from '@prisma/client';
 
 @Injectable()
 export class ProductsService {
-  public getAll(): Product[] {
-    return db.products;
+  constructor(private prismaService: PrismaService) {}
+
+  public getAll(): Promise<Product[]> {
+    return this.prismaService.product.findMany();
   }
 
-  public getById(id: Product['id']): Product | null {
-    return db.products.find((p) => p.id === id);
+  public getById(id: Product['id']): Promise<Product | null> {
+    return this.prismaService.product.findUnique({
+      where: { id },
+    });
   }
 
-  public delete(id: Product['id']): void {
-    const index = db.products.findIndex((p) => p.id === id);
-    if (index !== -1) {
-      db.products.splice(index, 1);
-    }
+  // public delete(id: Product['id']): void {
+  //   const index = db.products.findIndex((p) => p.id === id);
+  //   if (index !== -1) {
+  //     db.products.splice(index, 1);
+  //   }
+  // }
+
+  public deleteById(id: Product['id']): Promise<Product> {
+    return this.prismaService.product.delete({
+      where: { id },
+    });
   }
 
-  public create(productData: Omit<Product, 'id'>): Product {
-    const newProduct = { ...productData, id: uuidv4() };
-    db.products.push(newProduct);
-    return newProduct;
+  public create(
+    productData: Omit<Product, 'id' | 'createdAt' | 'updatedAt'>,
+  ): Promise<Product> {
+    return this.prismaService.product.create({
+      data: productData,
+    });
   }
 
   //   public updateById(
@@ -36,12 +50,13 @@ export class ProductsService {
   //     return updateProduct;
   //   }
 
-  public updateById(id: Product['id'], productData: Omit<Product, 'id'>): void {
-    db.products = db.products.map((p) => {
-      if (p.id === id) {
-        return { ...p, ...productData };
-      }
-      return p;
+  public updateById(
+    id: Product['id'],
+    productData: Omit<Product, 'id' | 'createdAt' | 'updatedAt'>,
+  ): Promise<Product> {
+    return this.prismaService.product.update({
+      where: { id },
+      data: productData,
     });
   }
 }
