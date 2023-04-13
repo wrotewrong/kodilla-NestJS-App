@@ -40,17 +40,17 @@ function getProducts() {
 function getClients() {
   return [
     {
-      id: 'ax105551-0f0d-4a9f-bc41-c559c8a17211',
+      id: '0d2c5d7b-7e1d-4f7d-a220-a8d34847624d',
       name: 'John Doe',
       address: '123 Main Street, London',
     },
     {
-      id: 'ax105551-0f0d-4a9f-bc41-c559c8a17212',
+      id: 'd39f6280-8bef-4986-9497-cbff6421b687',
       name: 'Jane Doe',
       address: '123 Main Street, London',
     },
     {
-      id: 'ax105551-0f0d-4a9f-bc41-c559c8a17213',
+      id: '414dc64c-18ba-486d-92bc-8255859c333f',
       name: 'Thomas Jefferson',
       address: 'Baker Street 12B, New York',
     },
@@ -61,17 +61,17 @@ function getOrders() {
   return [
     {
       id: 'fd105551-0f0d-4a9f-bc41-c559c8a17260',
-      clientId: 'ax105551-0f0d-4a9f-bc41-c559c8a17211',
+      clientId: '0d2c5d7b-7e1d-4f7d-a220-a8d34847624d',
       productId: 'fd105551-0f0d-4a9f-bc41-c559c8a17256',
     },
     {
       id: 'fd105551-0f0d-4a9f-bc41-c559c8a17261',
-      clientId: 'ax105551-0f0d-4a9f-bc41-c559c8a17211',
+      clientId: '0d2c5d7b-7e1d-4f7d-a220-a8d34847624d',
       productId: 'fd105551-0f0d-4a9f-bc41-c559c8a17256',
     },
     {
       id: 'fd105551-0f0d-4a9f-bc41-c559c8a17262',
-      clientId: 'ax105551-0f0d-4a9f-bc41-c559c8a17213',
+      clientId: '414dc64c-18ba-486d-92bc-8255859c333f',
       productId: '01c7599d-318b-4b9f-baf7-51f3a936a2d4',
     },
   ];
