@@ -96,8 +96,10 @@ export class OrdersService {
         },
       });
     } catch (error) {
-      if (error.code === 'P2025')
-        throw new BadRequestException("Product doesn't exist");
+      console.log(error);
+      if (error.code === 'P2025') {
+        throw new BadRequestException("Product or Client doesn't exist");
+      }
       throw error;
     }
   }

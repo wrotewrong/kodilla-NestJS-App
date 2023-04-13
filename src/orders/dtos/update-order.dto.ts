@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import {
-  IsOptional,
+  // IsOptional,
   IsNotEmpty,
   IsString,
   // Length,
@@ -8,13 +8,13 @@ import {
 } from 'class-validator';
 
 export class UpdateOrderDTO {
-  @IsOptional()
+  // @IsOptional()
   @IsNotEmpty()
   @IsUUID()
   @IsString()
   productId: string;
 
-  @IsOptional()
+  // @IsOptional()
   @IsNotEmpty()
   @IsUUID()
   @IsString()
